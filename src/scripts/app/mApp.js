@@ -16,6 +16,11 @@ angular.module('mApp', [ngTouch, ngSanitize, uiRouter, mAnimations, mCtrls, mDir
         'ngInject';
 
         $stateProvider
+            .state('main', {
+                url: '/xyz',
+                templateUrl: 'tpls/views/main.html',
+                controller: 'MainCtrl'
+            })
             .state('home', {
                 url: '/',
                 templateUrl: 'tpls/views/home.html',

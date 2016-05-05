@@ -4,6 +4,7 @@ import incompDetect from './utilities/incompDetect';
 incompDetect();
 
 import 'babel-polyfill';
+import './utilities/bootstrap';
 import loader from './utilities/loader';
 import version from './utilities/version';
 import incompatible from './utilities/incompatible';

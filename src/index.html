@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="css/style.css">
 
     <script src="scripts/modernizr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
 </head>
 
 <body>
@@ -31,7 +32,7 @@
     <div class="loader"></div>
     <!-- end: loader -->
     <!-- begin: main app -->
-    <header class="ng-cloak" ng-include=" 'tpls/partials/header.html' "></header>
+    <header class="ng-cloak" ng-controller=" 'HeaderCtrl' " ng-include=" 'tpls/partials/header.html' "></header>
     <div class="container view-change-animate ng-cloak" ui-view></div>
     <footer class="ng-cloak" ng-include=" 'tpls/partials/footer.html' "></footer>
     <!-- end: main app -->
