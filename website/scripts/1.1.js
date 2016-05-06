@@ -30888,6 +30888,10 @@ webpackJsonp([1],{
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _angular = __webpack_require__(314);
 
 	var _angular2 = _interopRequireDefault(_angular);
@@ -30912,11 +30916,11 @@ webpackJsonp([1],{
 
 	var _loader4 = _interopRequireDefault(_loader3);
 
-	var _loader5 = __webpack_require__(338);
+	var _loader5 = __webpack_require__(339);
 
 	var _loader6 = _interopRequireDefault(_loader5);
 
-	var _loader7 = __webpack_require__(342);
+	var _loader7 = __webpack_require__(343);
 
 	var _loader8 = _interopRequireDefault(_loader7);
 
@@ -30925,7 +30929,7 @@ webpackJsonp([1],{
 	/**
 	 * Register main angular app
 	 */
-	_angular2.default.module('mApp', [_angularTouch2.default, _angularSanitize2.default, _angularUiRouter2.default, _loader2.default, _loader4.default, _loader6.default, _loader8.default]).config(["$stateProvider", "$locationProvider", "$urlRouterProvider", function ($stateProvider, $locationProvider, $urlRouterProvider) {
+	var mApp = _angular2.default.module('mApp', [_angularTouch2.default, _angularSanitize2.default, _angularUiRouter2.default, _loader2.default, _loader4.default, _loader6.default, _loader8.default]).config(["$stateProvider", "$locationProvider", "$urlRouterProvider", function ($stateProvider, $locationProvider, $urlRouterProvider) {
 	    'ngInject';
 
 	    $stateProvider.state('main', {
@@ -30949,7 +30953,8 @@ webpackJsonp([1],{
 	    $urlRouterProvider.otherwise('/');
 
 	    $locationProvider.html5Mode(true);
-		}]);
+	}]);
+		exports.default = mApp;
 
 /***/ },
 
@@ -48976,8 +48981,8 @@ webpackJsonp([1],{
 
 	var map = {
 		"./DetailCtrl.js": 332,
-		"./MyCtrl.js": 334,
-		"./header.js": 347
+		"./HeaderCtrl.js": 334,
+		"./MyCtrl.js": 335
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -49044,7 +49049,26 @@ webpackJsonp([1],{
 
 	var _mCtrls2 = _interopRequireDefault(_mCtrls);
 
-	var _debug = __webpack_require__(335);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	_mCtrls2.default.controller('HeaderCtrl', ['$scope', 'UserService', function ($scope, UserService) {
+	  $scope.user = UserService.getUserData();
+	}]); /**
+	      * Created by jenish on 04-05-2016.
+		      */
+
+/***/ },
+
+/***/ 335:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _mCtrls = __webpack_require__(333);
+
+	var _mCtrls2 = _interopRequireDefault(_mCtrls);
+
+	var _debug = __webpack_require__(336);
 
 	var _debug2 = _interopRequireDefault(_debug);
 
@@ -49064,7 +49088,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 335:
+/***/ 336:
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -49074,7 +49098,7 @@ webpackJsonp([1],{
 	 * Expose `debug()` as the module.
 	 */
 
-	exports = module.exports = __webpack_require__(336);
+	exports = module.exports = __webpack_require__(337);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -49239,7 +49263,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 336:
+/***/ 337:
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -49255,7 +49279,7 @@ webpackJsonp([1],{
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(337);
+	exports.humanize = __webpack_require__(338);
 
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -49443,7 +49467,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 337:
+/***/ 338:
 /***/ function(module, exports) {
 
 	/**
@@ -49575,7 +49599,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 338:
+/***/ 339:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49583,7 +49607,7 @@ webpackJsonp([1],{
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var load = __webpack_require__(339);
+	var load = __webpack_require__(340);
 
 	load.keys().forEach(load);
 
@@ -49591,11 +49615,11 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 339:
+/***/ 340:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./templateDirective.js": 340
+		"./templateDirective.js": 341
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -49608,17 +49632,17 @@ webpackJsonp([1],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 339;
+	webpackContext.id = 340;
 
 
 /***/ },
 
-/***/ 340:
+/***/ 341:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _mDirectives = __webpack_require__(341);
+	var _mDirectives = __webpack_require__(342);
 
 	var _mDirectives2 = _interopRequireDefault(_mDirectives);
 
@@ -49636,7 +49660,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 341:
+/***/ 342:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49661,7 +49685,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 342:
+/***/ 343:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49669,7 +49693,7 @@ webpackJsonp([1],{
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var load = __webpack_require__(343);
+	var load = __webpack_require__(344);
 
 	load.keys().forEach(load);
 
@@ -49677,12 +49701,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 343:
+/***/ 344:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./templateFactory.js": 344,
-		"./userService.js": 346
+		"./templateFactory.js": 345,
+		"./userService.js": 347
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -49695,17 +49719,17 @@ webpackJsonp([1],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 343;
+	webpackContext.id = 344;
 
 
 /***/ },
 
-/***/ 344:
+/***/ 345:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _mServices = __webpack_require__(345);
+	var _mServices = __webpack_require__(346);
 
 	var _mServices2 = _interopRequireDefault(_mServices);
 
@@ -49717,7 +49741,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 345:
+/***/ 346:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49742,12 +49766,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 346:
+/***/ 347:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _mServices = __webpack_require__(345);
+	var _mServices = __webpack_require__(346);
 
 	var _mServices2 = _interopRequireDefault(_mServices);
 
@@ -49767,25 +49791,6 @@ webpackJsonp([1],{
 	}); /**
 	     * Created by jenish on 04-05-2016.
 		     */
-
-/***/ },
-
-/***/ 347:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _mCtrls = __webpack_require__(333);
-
-	var _mCtrls2 = _interopRequireDefault(_mCtrls);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	_mCtrls2.default.controller('HeaderCtrl', ['$scope', 'UserService', function ($scope, UserService) {
-	  $scope.user = UserService.getUserData();
-	}]); /**
-	      * Created by jenish on 04-05-2016.
-		      */
 
 /***/ }
 

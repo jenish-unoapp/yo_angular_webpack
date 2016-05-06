@@ -11,11 +11,22 @@ import mServices from './services/_loader';
 /**
  * Register main angular app
  */
-angular.module('mApp', [ngTouch, ngSanitize, uiRouter, mAnimations, mCtrls, mDirectives, mServices])
+var mApp = angular.module('mApp', [ngTouch, ngSanitize, uiRouter, mAnimations, mCtrls, mDirectives, mServices])
+    .constant("appConfig", {
+        "url": "http://localhost:9000",
+        "port": "80"
+    })
     .config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
         'ngInject';
 
         $stateProvider
+            .state('login', {
+                templateUrl: 'tpls/views/login.html',
+                controller: 'LoginCtrl'
+            })
+            .state('logout', {
+                controller: 'LogoutCtrl'
+            })
             .state('main', {
                 url: '/xyz',
                 templateUrl: 'tpls/views/main.html',
@@ -41,3 +52,5 @@ angular.module('mApp', [ngTouch, ngSanitize, uiRouter, mAnimations, mCtrls, mDir
 
         $locationProvider.html5Mode(true);
     });
+
+export default mApp;

@@ -31,8 +31,11 @@ function completeCb() {
         // hide loader
         document.querySelector('.loader').style.display = 'none';
 
-        // run app
-        angular.bootstrap(document, ['mApp'], { strictDi: true });
+        angular.element(document).ready(function() {
+            // run app
+            angular.bootstrap(document, ['mApp'], { strictDi: true });
+        });
+
     });
 }
 
