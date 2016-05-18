@@ -12,9 +12,9 @@ import mServices from './services/_loader';
  * Register main angular app
  */
 var mApp = angular.module('mApp', [ngTouch, ngSanitize, uiRouter, mAnimations, mCtrls, mDirectives, mServices])
-    .constant("appConfig", {
-        "url": "http://localhost:9000",
-        "port": "80"
+    .constant('appConfig', {
+        'url': "http://localhost:9000",
+        'port': "80"
     })
     .config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
         'ngInject';

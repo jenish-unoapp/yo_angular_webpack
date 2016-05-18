@@ -30916,11 +30916,11 @@ webpackJsonp([1],{
 
 	var _loader4 = _interopRequireDefault(_loader3);
 
-	var _loader5 = __webpack_require__(339);
+	var _loader5 = __webpack_require__(340);
 
 	var _loader6 = _interopRequireDefault(_loader5);
 
-	var _loader7 = __webpack_require__(343);
+	var _loader7 = __webpack_require__(344);
 
 	var _loader8 = _interopRequireDefault(_loader7);
 
@@ -30929,10 +30929,18 @@ webpackJsonp([1],{
 	/**
 	 * Register main angular app
 	 */
-	var mApp = _angular2.default.module('mApp', [_angularTouch2.default, _angularSanitize2.default, _angularUiRouter2.default, _loader2.default, _loader4.default, _loader6.default, _loader8.default]).config(["$stateProvider", "$locationProvider", "$urlRouterProvider", function ($stateProvider, $locationProvider, $urlRouterProvider) {
+	var mApp = _angular2.default.module('mApp', [_angularTouch2.default, _angularSanitize2.default, _angularUiRouter2.default, _loader2.default, _loader4.default, _loader6.default, _loader8.default]).constant('appConfig', {
+	    'url': "http://localhost:9000",
+	    'port': "80"
+	}).config(["$stateProvider", "$locationProvider", "$urlRouterProvider", function ($stateProvider, $locationProvider, $urlRouterProvider) {
 	    'ngInject';
 
-	    $stateProvider.state('main', {
+	    $stateProvider.state('login', {
+	        templateUrl: 'tpls/views/login.html',
+	        controller: 'LoginCtrl'
+	    }).state('logout', {
+	        controller: 'LogoutCtrl'
+	    }).state('main', {
 	        url: '/xyz',
 	        templateUrl: 'tpls/views/main.html',
 	        controller: 'MainCtrl'
@@ -30954,6 +30962,7 @@ webpackJsonp([1],{
 
 	    $locationProvider.html5Mode(true);
 	}]);
+
 		exports.default = mApp;
 
 /***/ },
@@ -48982,7 +48991,8 @@ webpackJsonp([1],{
 	var map = {
 		"./DetailCtrl.js": 332,
 		"./HeaderCtrl.js": 334,
-		"./MyCtrl.js": 335
+		"./LoginCtrl.js": 335,
+		"./MyCtrl.js": 336
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -49068,7 +49078,63 @@ webpackJsonp([1],{
 
 	var _mCtrls2 = _interopRequireDefault(_mCtrls);
 
-	var _debug = __webpack_require__(336);
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	_mCtrls2.default.controller('LoginCtrl', ['$scope', '$state', 'UserService', function ($scope, $state, UserService) {
+	    $scope.username = '';
+	    $scope.password = '';
+	    $scope.errors = [];
+
+	    function disableLoginButton(message) {
+	        if (typeof message !== 'string') {
+	            message = 'Attempting login...';
+	        }
+	        $('#login-form-submit-button').prop('disabled', true).prop('value', message);
+	    }
+
+	    function enableLoginButton(message) {
+	        if (typeof message !== 'string') {
+	            message = 'Submit';
+	        }
+	        $('#login-form-submit-button').prop('disabled', false).prop('value', message);
+	    }
+
+	    function onSuccessfulLogin() {
+	        $state.go('main');
+	    }
+
+	    function onFailedLogin(error) {
+	        if (typeof error === 'string' && $scope.errors.indexOf(error) === -1) {
+	            $scope.errors.push(error);
+	        }
+	        enableLoginButton();
+	    }
+
+	    $scope.login = function () {
+	        disableLoginButton();
+	        UserService.authenticate($scope.username, $scope.password, onSuccessfulLogin, onFailedLogin);
+	    };
+	}]); /**
+	      * Created by jenish on 06-05-2016.
+	      */
+
+	_mCtrls2.default.controller('LogoutCtrl', ['$state', 'UserService', function ($state, UserService) {
+	    UserService.removeAuthentication();
+	    $state.go('main');
+		}]);
+
+/***/ },
+
+/***/ 336:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _mCtrls = __webpack_require__(333);
+
+	var _mCtrls2 = _interopRequireDefault(_mCtrls);
+
+	var _debug = __webpack_require__(337);
 
 	var _debug2 = _interopRequireDefault(_debug);
 
@@ -49088,7 +49154,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 336:
+/***/ 337:
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -49098,7 +49164,7 @@ webpackJsonp([1],{
 	 * Expose `debug()` as the module.
 	 */
 
-	exports = module.exports = __webpack_require__(337);
+	exports = module.exports = __webpack_require__(338);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -49263,7 +49329,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 337:
+/***/ 338:
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -49279,7 +49345,7 @@ webpackJsonp([1],{
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(338);
+	exports.humanize = __webpack_require__(339);
 
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -49467,7 +49533,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 338:
+/***/ 339:
 /***/ function(module, exports) {
 
 	/**
@@ -49599,7 +49665,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 339:
+/***/ 340:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49607,7 +49673,7 @@ webpackJsonp([1],{
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var load = __webpack_require__(340);
+	var load = __webpack_require__(341);
 
 	load.keys().forEach(load);
 
@@ -49615,11 +49681,11 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 340:
+/***/ 341:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./templateDirective.js": 341
+		"./templateDirective.js": 342
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -49632,17 +49698,17 @@ webpackJsonp([1],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 340;
+	webpackContext.id = 341;
 
 
 /***/ },
 
-/***/ 341:
+/***/ 342:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _mDirectives = __webpack_require__(342);
+	var _mDirectives = __webpack_require__(343);
 
 	var _mDirectives2 = _interopRequireDefault(_mDirectives);
 
@@ -49660,7 +49726,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 342:
+/***/ 343:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49685,7 +49751,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 343:
+/***/ 344:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49693,7 +49759,7 @@ webpackJsonp([1],{
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var load = __webpack_require__(344);
+	var load = __webpack_require__(345);
 
 	load.keys().forEach(load);
 
@@ -49701,12 +49767,12 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 344:
+/***/ 345:
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./templateFactory.js": 345,
-		"./userService.js": 347
+		"./templateFactory.js": 346,
+		"./userService.js": 348
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -49719,17 +49785,17 @@ webpackJsonp([1],{
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 344;
+	webpackContext.id = 345;
 
 
 /***/ },
 
-/***/ 345:
+/***/ 346:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _mServices = __webpack_require__(346);
+	var _mServices = __webpack_require__(347);
 
 	var _mServices2 = _interopRequireDefault(_mServices);
 
@@ -49741,7 +49807,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 346:
+/***/ 347:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -49766,31 +49832,77 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 347:
+/***/ 348:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _mServices = __webpack_require__(346);
+	var _mServices = __webpack_require__(347);
 
 	var _mServices2 = _interopRequireDefault(_mServices);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_mServices2.default.service('UserService', function User() {
+	_mServices2.default.service('UserService', ['$http', 'appConfig', function ($http, appConfig) {
 	    var userData = {
 	        isAuthenticated: false,
 	        username: '',
-	        bearerToken: '',
+	        authToken: '',
 	        expirationDate: null
+	    };
+
+	    var setHttpAuthHeader = function setHttpAuthHeader() {
+	        $http.defaults.headers.common.Authorization = userData.authToken;
+	    };
+
+	    var clearUserData = function clearUserData() {
+	        userData.isAuthenticated = false;
+	        userData.username = '';
+	        userData.authToken = '';
+	        userData.expirationDate = null;
+	    };
+
+	    this.removeAuthentication = function () {
+	        clearUserData();
+	        $http.defaults.headers.common.Authorization = null;
 	    };
 
 	    this.getUserData = function () {
 	        return userData;
 	    };
-	}); /**
-	     * Created by jenish on 04-05-2016.
-		     */
+
+	    this.authenticate = function (username, password, successCallback, errorCallback) {
+	        var config = {
+	            method: 'POST',
+	            url: appConfig.url + '/api/auth/login',
+	            headers: {
+	                'Content-Type': 'application/x-www-form-urlencoded'
+	            },
+	            data: 'email=' + username + '&password=' + password
+	        };
+
+	        $http(config).success(function (data) {
+	            userData.isAuthenticated = true;
+	            userData.username = data.userName;
+	            userData.authToken = data.access_token;
+	            userData.expirationDate = new Date(data['.expires']);
+	            setHttpAuthHeader();
+	            if (typeof successCallback === 'function') {
+	                successCallback();
+	            }
+	        }).error(function (data) {
+	            if (typeof errorCallback === 'function') {
+	                if (data.error_description) {
+	                    errorCallback(data.error_description);
+	                } else {
+	                    errorCallback('Unable to contact server; please, try again later.');
+	                }
+	            }
+	        });
+	    };
+	}]); /**
+	      * Created by jenish on 04-05-2016.
+		      */
 
 /***/ }
 

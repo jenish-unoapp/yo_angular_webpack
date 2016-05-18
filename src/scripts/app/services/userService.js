@@ -35,11 +35,11 @@ mServices.service('UserService', ['$http', 'appConfig', function ($http, appConf
     this.authenticate = function (username, password, successCallback, errorCallback) {
         var config = {
             method: 'POST',
-            url: appConfig.url + '/token',
+            url: appConfig.url + '/api/auth/login',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 'username=' + username + '&password=' + password
+            data: 'email=' + username + '&password=' + password
         };
 
         $http(config)
@@ -63,6 +63,4 @@ mServices.service('UserService', ['$http', 'appConfig', function ($http, appConf
                 }
             });
     };
-
-
 }]);

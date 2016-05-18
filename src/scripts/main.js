@@ -31,7 +31,7 @@ function completeCb() {
         // hide loader
         document.querySelector('.loader').style.display = 'none';
 
-        angular.element(document).ready(function() {
+        angular.element(document).ready(function () {
             // run app
             angular.bootstrap(document, ['mApp'], { strictDi: true });
         });

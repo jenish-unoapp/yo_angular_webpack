@@ -2,8 +2,8 @@
  * Created by jenish on 06-05-2016.
  */
 
-import mCtrls from './_mCtrls';
-
+import mCtrls from './_mCtrls';   
+  
 mCtrls.controller('LoginCtrl', ['$scope', '$state', 'UserService', function ($scope, $state, UserService) {
     $scope.username = '';
     $scope.password = '';

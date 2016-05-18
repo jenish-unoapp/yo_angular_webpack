@@ -5846,4 +5846,7 @@ body > .container {
 code {
   font-size: 80%; }
 
+[ui-sref] {
+  cursor: pointer; }
+
 /*# sourceMappingURL=style.css.map */
